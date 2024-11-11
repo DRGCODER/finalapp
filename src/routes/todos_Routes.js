@@ -1,15 +1,16 @@
 import { Router } from "express";
 import { createTodo, getallTodoWithPagination, getAllTodo, getSingleTodo, deleteTodo, updateTodo, patchTodo, getAdminTodo } from "../controller/todos/todo_controller.js";
+import { paginationMiddleware } from "../miffleware/pagination_middleware.js";
+import { authenticateJWT } from '../miffleware/jwt_middleware.js';
 
 
 const todoRouter = Router();
 
+todoRouter.use(authenticateJWT);
 
 // Create TODO route
 todoRouter.post("/create-todo", createTodo);
 
-// Fetch All TODO With PAgination route
-todoRouter.get("/getalltodowithpag", getallTodoWithPagination);
 
 // Fetch All TODO route
 todoRouter.get("/getalltodo", getAllTodo);
@@ -29,5 +30,7 @@ todoRouter.patch("/patchtodo", patchTodo);
 // Fetch All Admin Todo Route
 todoRouter.get("/getadmintodo", getAdminTodo);
 
+// Fetch All TODO With PAgination route
+todoRouter.get("/getalltodowithpag", paginationMiddleware, getallTodoWithPagination);
 
 export default todoRouter;

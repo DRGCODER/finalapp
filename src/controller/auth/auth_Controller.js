@@ -7,6 +7,9 @@ import { registerUser } from './register.js';
 import { updateUser } from './updateUser.js';
 import { userProfile } from './userProfile.js';
 import { changeUserRole } from './changeUSerRole.js';
+import { handleRefreshToken } from './regenerate_JWT_Token.js';
+import { getUserByIdAdmin } from './get_user_by_id_admin.js';
+
 
 
 export const register = registerUser;
@@ -18,3 +21,5 @@ export const logOut = logoutUser;
 export const logIn = handleLogin;
 export const fetchAllWithPagination = getAllUsersWPAG;
 export const changeRole = changeUserRole;
+export const automaticRefreshToken = handleRefreshToken;
+export const getUserByIDAdmin = getUserByIdAdmin;
